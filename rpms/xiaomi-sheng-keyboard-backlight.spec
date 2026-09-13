@@ -57,5 +57,5 @@ install -m 644 90-kbd-backlight.rules %{buildroot}/usr/lib/udev/rules.d/
 
 %changelog
 
-* Sat Sep 05 2026 opencode <opencode@localhost> - 0.0.0-1
+* Sat Sep 05 2026 mumuxiao722 <zy349931@163.com> - 0.0.0-1
 - Initial package

@@ -26,6 +26,7 @@ BuildRequires:  tar
 BuildRequires:  xz
 BuildRequires:  systemd-rpm-macros
 Requires:       fprintd >= 1.94.5
+Requires:       fprintd-pam
 Requires:       firmware-xiaomi-sheng
 
 %description
@@ -101,5 +102,8 @@ install -m 0644 udev/99-qcomtee-fpc.rules %{buildroot}/usr/lib/udev/rules.d/
 
 %changelog
 
-* Sat Sep 05 2026 opencode <opencode@localhost> - 0.1.4-1
+* Sat Sep 05 2026 mumuxiao722 <zy349931@163.com> - 0.1.4-1
 - Initial package
+
+* Sun Sep 13 2026 mumuxiao722 <zy349931@163.com> - 0.1.4-1
+- Add Requires: fprintd-pam to provide pam_fprintd.so for sudo PAM auth

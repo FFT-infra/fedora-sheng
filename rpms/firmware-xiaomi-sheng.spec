@@ -37,5 +37,5 @@ cp %{buildroot}/lib/firmware/ath12k/WCN7850/hw2.0/board-2.bin \
 
 %changelog
 
-* Sat Sep 05 2026 opencode <opencode@localhost> - 0.0.0-1
+* Sat Sep 05 2026 mumuxiao722 <zy349931@163.com> - 0.0.0-1
 - Initial package

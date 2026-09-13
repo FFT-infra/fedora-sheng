@@ -57,5 +57,5 @@ install -m 644 %{SOURCE2} %{buildroot}/usr/lib/systemd/system/sheng-devauth.serv
 
 %changelog
 
-* Sat Sep 05 2026 opencode <opencode@localhost> - 0.0.0-1
+* Sat Sep 05 2026 mumuxiao722 <zy349931@163.com> - 0.0.0-1
 - Initial package

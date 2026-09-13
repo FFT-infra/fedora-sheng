@@ -53,5 +53,5 @@ install -D -m 0644 etc/systemd/system/sheng-audio-init.service \
 %{_unitdir}/sheng-audio-init.service
 
 %changelog
-* Fri Sep 11 2026 opencode <opencode@localhost> - 1.0-1
+* Fri Sep 11 2026 mumuxiao722 <zy349931@163.com> - 1.0-1
 - Merge sound card bring-up (soundwire/wcd938x/lpass modules + oneshot init)

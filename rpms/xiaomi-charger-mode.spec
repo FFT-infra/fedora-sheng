@@ -47,5 +47,5 @@ install -m 644 xiaomi-charger-mode.service %{buildroot}/usr/lib/systemd/system/
 
 %changelog
 
-* Sat Sep 05 2026 opencode <opencode@localhost> - 0.0.0-1
+* Sat Sep 05 2026 mumuxiao722 <zy349931@163.com> - 0.0.0-1
 - Initial package
