@@ -837,7 +837,7 @@ jobs:
           sudo chroot "$ROOTFS_MOUNT" dnf install -y \
             pipewire-pulseaudio pipewire-alsa pipewire-jack-audio-connection-kit \
             plasma-desktop plasma-nm \
-            sddm konsole dolphin kate \
+            plasma-login-manager kcm-plasmalogin konsole dolphin kate \
             systemd-pam \
             xdg-desktop-portal-kde kio-admin
           echo "✓ KDE Plasma installed"
@@ -848,7 +848,7 @@ jobs:
           sudo chroot "$ROOTFS_MOUNT" dnf install -y \
             pipewire-pulseaudio pipewire-alsa pipewire-jack-audio-connection-kit \
             plasma-mobile \
-            sddm konsole dolphin kate \
+            plasma-login-manager kcm-plasmalogin konsole dolphin kate \
             systemd-pam \
             xdg-desktop-portal-kde kio-admin
           echo "✓ KDE Plasma Mobile installed"
@@ -890,7 +890,7 @@ jobs:
           if [[ "${{ inputs.desktop }}" == "GNOME" ]]; then
             sudo chroot "$ROOTFS_MOUNT" systemctl enable gdm
           elif [[ "${{ inputs.desktop }}" == "KDE Plasma" ]]; then
-            sudo chroot "$ROOTFS_MOUNT" systemctl enable sddm
+            sudo chroot "$ROOTFS_MOUNT" systemctl enable plasmalogin.service
           fi
           echo "✓ Display manager configured"
 
@@ -909,14 +909,13 @@ jobs:
             else
               SESSION="plasma"
             fi
-            sudo sed -i "/^\[General\]/a DefaultSession=${SESSION}.desktop" "$ROOTFS_MOUNT/etc/sddm.conf"
             if [[ "${{ inputs.autologin }}" == "true" ]]; then
-              sudo mkdir -p "$ROOTFS_MOUNT/etc/sddm.conf.d"
-              printf '[Autologin]\nUser=%s\nSession=%s\n' "$USERNAME" "$SESSION" | \
-                sudo tee "$ROOTFS_MOUNT/etc/sddm.conf.d/autologin.conf" > /dev/null
-              echo "✓ SDDM configured (session: $SESSION, autologin: $USERNAME)"
+              sudo mkdir -p "$ROOTFS_MOUNT/etc/plasmalogin.conf.d"
+              printf '[Autologin]\nUser=%s\nSession=%s.desktop\n' "$USERNAME" "$SESSION" | \
+                sudo tee "$ROOTFS_MOUNT/etc/plasmalogin.conf.d/autologin.conf" > /dev/null
+              echo "✓ Plasma Login configured (session: $SESSION, autologin: $USERNAME)"
             else
-              echo "✓ SDDM configured (default session: $SESSION, autologin disabled)"
+              echo "✓ Plasma Login configured (autologin disabled; session selected at login)"
             fi
           elif [[ "${{ inputs.desktop }}" == "Denial" ]]; then
             sudo mkdir -p "$ROOTFS_MOUNT/etc/systemd/system/getty@tty1.service.d"
