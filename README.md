@@ -133,7 +133,7 @@ If you want to use a custom kernel instead of the prebuilt one:
 | [fastrpc](https://github.com/qualcomm/fastrpc) | Qualcomm FastRPC for DSP communication |
 | [libssc](https://codeberg.org/DylanVanAssche/libssc) | Qualcomm Sensor Core userspace library |
 | [iio-sensor-proxy](https://github.com/hadess/iio-sensor-proxy) | IIO sensor proxy daemon |
-| [sheng-tablet-mode](https://github.com/mumuxiao722/sheng-tablet-mode) | Virtual tablet-mode switch enabling GNOME auto-rotation |
+| [sheng-gnome-fix](https://github.com/mumuxiao722/sheng-gnome-fix) | GNOME auto-rotation, power-key display toggle, suspend disabled system-wide |
 | [Denial](https://github.com/denialwm/denial) | Flutter-native Wayland compositor (built from source for ARM64; no official ARM64 binaries) |
 | [sheng-sensors](#) | Device-specific sensor configuration and udev rules |
 | [alsa-xiaomi-sheng](#) | ALSA UCM2 audio configuration |
@@ -211,7 +211,7 @@ This project benefits from the following outstanding work and community support:
 - **slhssb** – for the keyboard backlight driver (xiaomi-sheng-keyboard-backlight)
 - **GhfunNiHe** – for the automatic partition resize (growfs) implementation, taken from [debian-sheng](https://github.com/ianchb/debian-sheng)
 - **code002-2** – for the WiFi firmware warning reference
-- **DotRedstone** – for the [nixos-sheng](https://github.com/DotRedstone/nixos-sheng) project, whose `fake-tablet-mode` service and `docs/hall-sensor-rotation.md` debugging notes form the basis of the [`sheng-tablet-mode`](https://github.com/mumuxiao722/sheng-tablet-mode) package for GNOME auto-rotation
+- **DotRedstone** – for the [nixos-sheng](https://github.com/DotRedstone/nixos-sheng) project, whose `fake-tablet-mode` and `sheng-power-key-display-toggle` services and `docs/hall-sensor-rotation.md` debugging notes form the basis of the [`sheng-gnome-fix`](https://github.com/mumuxiao722/sheng-gnome-fix) package
 
 ---
 

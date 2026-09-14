@@ -595,15 +595,15 @@ jobs:
           path: rpms/
           merge-multiple: true
 
-      - name: "Download sheng-tablet-mode RPM (GNOME Auto-Rotation & Lid Detection)"
+      - name: "Download sheng-gnome-fix RPM (GNOME Auto-Rotation, Power Key & Suspend)"
         if: ${{ inputs.desktop == 'GNOME' }}
         run: |
           gh release download \
-            --repo mumuxiao722/sheng-tablet-mode \
-            --pattern 'sheng-tablet-mode-*.noarch.rpm' \
+            --repo mumuxiao722/sheng-gnome-fix \
+            --pattern 'sheng-gnome-fix-*.noarch.rpm' \
             --dir rpms/ \
             --clobber
-          echo "✓ sheng-tablet-mode RPM downloaded from sheng-tablet-mode Release"
+          echo "✓ sheng-gnome-fix RPM downloaded from sheng-gnome-fix Release"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -761,7 +761,7 @@ jobs:
 
       - name: "Install Custom RPMs"
         run: |
-          # xiaomi-sheng + table-mode (GNOME, from sheng-tablet-mode Release) + denial
+          # xiaomi-sheng + sheng-gnome-fix (GNOME, from sheng-gnome-fix Release) + denial
           # (built by build-denial when desktop=Denial), all merged into rpms/.
           cp rpms/*.rpm "$ROOTFS_MOUNT/tmp/"
           sudo chroot "$ROOTFS_MOUNT" bash -c "dnf install -y /tmp/*.rpm"
@@ -1027,10 +1027,10 @@ jobs:
           sudo chroot "$ROOTFS_MOUNT" systemctl enable sheng-audio-init.service
           echo "✓ Services enabled"
 
-      - name: "Enable sheng-tablet-mode (GNOME auto-rotation)"
+      - name: "Enable sheng-gnome-fix (GNOME auto-rotation + power key)"
         if: ${{ inputs.desktop == 'GNOME' }}
         run: |
-          sudo chroot "$ROOTFS_MOUNT" systemctl enable fake-tablet-mode.service
+          sudo chroot "$ROOTFS_MOUNT" systemctl enable sheng-fake-tablet-mode.service sheng-power-key-toggle.service
 
       - name: "Configure sudo"
         run: |

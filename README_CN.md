@@ -133,7 +133,7 @@
 | [fastrpc](https://github.com/qualcomm/fastrpc) | Qualcomm FastRPC（DSP 通信） |
 | [libssc](https://codeberg.org/DylanVanAssche/libssc) | Qualcomm Sensor Core 用户空间库 |
 | [iio-sensor-proxy](https://github.com/hadess/iio-sensor-proxy) | IIO 传感器代理守护进程 |
-| [sheng-tablet-mode](https://github.com/mumuxiao722/sheng-tablet-mode) | 虚拟平板模式开关，启用 GNOME 自动旋转 |
+| [sheng-gnome-fix](https://github.com/mumuxiao722/sheng-gnome-fix) | GNOME 自动旋转、电源键息屏锁屏、系统级禁用挂起 |
 | [Denial](https://github.com/denialwm/denial) | Flutter-native Wayland 合成器（ARM64 从源码自建；官方暂无 ARM64 二进制） |
 | [sheng-sensors](#) | 设备特定传感器配置和 udev 规则 |
 | [alsa-xiaomi-sheng](#) | ALSA UCM2 音频配置 |
@@ -211,7 +211,7 @@ fastboot reboot
 - **slhssb** – 键盘背光驱动（xiaomi-sheng-keyboard-backlight）
 - **GhfunNiHe** – 自动分区扩容（growfs）实现，取自 [debian-sheng](https://github.com/ianchb/debian-sheng)
 - **code002-2** – WiFi 固件警告参考
-- **DotRedstone** – 提供 [nixos-sheng](https://github.com/DotRedstone/nixos-sheng) 项目，其 `fake-tablet-mode` 服务与 `docs/hall-sensor-rotation.md` 调试记录，是 [`sheng-tablet-mode`](https://github.com/mumuxiao722/sheng-tablet-mode) 软件包实现 GNOME 自动旋转的基础
+- **DotRedstone** – 提供 [nixos-sheng](https://github.com/DotRedstone/nixos-sheng) 项目，其 `fake-tablet-mode` 与 `sheng-power-key-display-toggle` 服务及 `docs/hall-sensor-rotation.md` 调试记录，是 [`sheng-gnome-fix`](https://github.com/mumuxiao722/sheng-gnome-fix) 软件包的基础
 
 ---
 
