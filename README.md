@@ -213,7 +213,8 @@ This project benefits from the following outstanding work and community support:
 - **slhssb** – for the keyboard backlight driver (xiaomi-sheng-keyboard-backlight)
 - **GhfunNiHe** – for the automatic partition resize (growfs) implementation, taken from [debian-sheng](https://github.com/ianchb/debian-sheng)
 - **code002-2** – for the WiFi firmware warning reference
-- **DotRedstone** – for the [nixos-sheng](https://github.com/DotRedstone/nixos-sheng) project, whose `fake-tablet-mode` and `sheng-power-key-display-toggle` services and `docs/hall-sensor-rotation.md` debugging notes form the basis of the [`sheng-gnome-fix`](https://github.com/mumuxiao722/sheng-gnome-fix) package
+- **DotRedstone** – for the [nixos-sheng](https://github.com/DotRedstone/nixos-sheng) project, whose `fake-tablet-mode` lid blanking, `sheng-power-key-display-toggle` service and `docs/hall-sensor-rotation.md` debugging notes form the basis of the cover/power-key handling in the [`sheng-gnome-fix`](https://github.com/mumuxiao722/sheng-gnome-fix) package
+- **CFM880** – for [nabu-accelerometer](https://github.com/CFM880/nabu-accelerometer), whose `userspace/nabu-tablet-mode.c` (GPL-2.0-only) is the source of the new tablet-mode core in `sheng-gnome-fix`
 
 ---
 

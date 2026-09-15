@@ -213,7 +213,8 @@ fastboot reboot
 - **slhssb** – 键盘背光驱动（xiaomi-sheng-keyboard-backlight）
 - **GhfunNiHe** – 自动分区扩容（growfs）实现，取自 [debian-sheng](https://github.com/ianchb/debian-sheng)
 - **code002-2** – WiFi 固件警告参考
-- **DotRedstone** – 提供 [nixos-sheng](https://github.com/DotRedstone/nixos-sheng) 项目，其 `fake-tablet-mode` 与 `sheng-power-key-display-toggle` 服务及 `docs/hall-sensor-rotation.md` 调试记录，是 [`sheng-gnome-fix`](https://github.com/mumuxiao722/sheng-gnome-fix) 软件包的基础
+- **DotRedstone** – 提供 [nixos-sheng](https://github.com/DotRedstone/nixos-sheng) 项目，其 `fake-tablet-mode` 的合盖/开盖息屏处理、`sheng-power-key-display-toggle` 服务及 `docs/hall-sensor-rotation.md` 调试记录，是 [`sheng-gnome-fix`](https://github.com/mumuxiao722/sheng-gnome-fix) 软件包中合盖/电源键处理的基础
+- **CFM880** – 提供 [nabu-accelerometer](https://github.com/CFM880/nabu-accelerometer)，其 `userspace/nabu-tablet-mode.c`（GPL-2.0-only）是 `sheng-gnome-fix` 新 tablet-mode 核心的移植来源
 
 ---
 
