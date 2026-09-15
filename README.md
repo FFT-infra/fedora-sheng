@@ -185,6 +185,8 @@ After rebooting, the device should start from slot B and boot into Fedora.
 
 ## Known Issues
 
+1. **Sensor orientation may become "undefined" after reboot** – The accelerometer orientation can sometimes become "undefined" instead of "normal" after a reboot. If your auto-rotation is confirmed working, avoid restarting whenever possible, as a reboot may cause the sensor orientation to become undefined. There is currently no known solution for this issue.
+
 ### GNOME Mobile
 
 1. **🚫 Fedora 43: gsd-mobile 49 is EXPIRED.** Selecting GNOME Mobile on fc43 will result in a mixed build (gsd=51~beta / mutter+shell=49^mobile). The version mismatch may cause runtime issues or instability. Use at your own risk.

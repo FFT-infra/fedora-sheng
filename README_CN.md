@@ -185,6 +185,8 @@ fastboot reboot
 
 ## 已知问题
 
+1. **重启后传感器方向有时会变为 undefined 而非 normal** – 加速度计方向有时会在重启后变为 undefined 而非 normal，目前暂未找到解决办法。如果你确认能够旋转，请尽量不要重启，否则可能会导致传感器方向变为 undefined。
+
 ### GNOME Mobile
 
 1. **🚫 Fedora 43：gsd-mobile 49 已过期。** 在 fc43 上选择 GNOME Mobile 将导致混合构建（gsd=51~beta / mutter+shell=49^mobile）。版本不匹配可能导致运行时问题或不稳定。使用风险自负。
