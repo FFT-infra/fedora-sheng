@@ -52,7 +52,7 @@ When you trigger the **Build Fedora RootFS** workflow via `workflow_dispatch`, t
 | **Enable Third-Party** | Enable third-party repositories | `true` / `false` | `false` |
 | **Desktop** | Desktop environment to install | `GNOME` / `KDE Plasma` / `Denial` / `server` | `GNOME` |
 | **GNOME Mobile** | Use GNOME Mobile from @mobility/gnome-mobile COPR (requires Enable Third-Party). 🚫 fc43: mixed build (gsd=51~beta/mutter+shell=49^mobile), may cause runtime issues. fc44/45: may fall back to standard GNOME if COPR packages missing — **we are NOT responsible**. Only rawhide fully supported. Check [COPR Monitor](https://copr.fedorainfracloud.org/coprs/g/mobility/gnome-mobile/monitor/) before building. | `true` / `false` | `false` |
-| **Plasma Mobile** | Use Plasma Mobile shell instead of Plasma Desktop (only when Desktop=KDE Plasma). Only Fedora 43 confirmed working. Crashes on fc44/45/rawhide — **we are NOT responsible**. | `true` / `false` | `false` |
+| **Plasma Mobile** | Use Plasma Mobile shell instead of Plasma Desktop (only when Desktop=KDE Plasma). Only Fedora 43 confirmed working. Crashes on fc44/45/rawhide. SDDM has been replaced with plasma-login-manager which may fix this, but untested. | `true` / `false` | `false` |
 | **Denial: Mobile mode** | Denial: launch in Mobile mode (Android-like tablet UI) instead of Desktop mode (no on-screen keyboard) (only when Desktop=Denial). | `true` / `false` | `true` |
 | **Quiet Boot** | Enable Plymouth splash screen and quiet boot messages | `true` / `false` | `true` |
 | **Autologin** | Whether the created user should be logged in automatically | `true` / `false` | `true` |
@@ -185,7 +185,7 @@ After rebooting, the device should start from slot B and boot into Fedora.
 
 ## Known Issues
 
-1. **Sensor orientation may become "undefined" after reboot** – The accelerometer orientation can sometimes become "undefined" instead of "normal" after a reboot. If your auto-rotation is confirmed working, avoid restarting whenever possible, as a reboot may cause the sensor orientation to become undefined. There is currently no known solution for this issue.
+1. **Sensor orientation may be "undefined" for a few minutes after boot** – The accelerometer orientation may show as "undefined" within the first few minutes after boot, causing auto-rotation to not work. It recovers to "normal" automatically.
 
 ### GNOME Mobile
 
@@ -199,7 +199,7 @@ After rebooting, the device should start from slot B and boot into Fedora.
 
 1. **Plasma Mobile crashes on Fedora 44, 45, and rawhide** – Desktop crashes during startup. Only **Fedora 43** is confirmed working.
 2. **Partial mobile UI is accessible** – Even when the desktop crashes, some mobile shell components still function: the first-boot setup wizard, lock screen password input, and the power menu (shutdown/restart/logout).
-3. If you know how to fix this, contributions via Issues or PRs are welcome.
+3. I switched from SDDM to `plasma-login-manager` (SDDM is deprecated on Fedora). This **may** resolve the Plasma Mobile crash, but I have **not tested it yet**. Feedback welcome.
 
 ---
 

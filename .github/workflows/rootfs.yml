@@ -37,7 +37,7 @@ on:
         default: false
 
       plasma_mobile:
-        description: 'Enable Plasma Mobile instead of Plasma Desktop (only when desktop=KDE Plasma). WARNING: Only Fedora 43 is confirmed working. Plasma Mobile crashes on fc44/45/rawhide.'
+        description: 'Enable Plasma Mobile instead of Plasma Desktop (only when desktop=KDE Plasma). WARNING: Only Fedora 43 is confirmed working. Plasma Mobile crashes on fc44/45/rawhide. We switched from SDDM to plasma-login-manager which may fix this, but it is untested.'
         type: boolean
         default: false
 

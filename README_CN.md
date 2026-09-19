@@ -52,7 +52,7 @@
 | **Enable Third-Party** | 启用第三方仓库 | `true` / `false` | `false` |
 | **Desktop** | 要安装的桌面环境 | `GNOME` / `KDE Plasma` / `Denial` / `server` | `GNOME` |
 | **GNOME Mobile** | 使用 @mobility/gnome-mobile COPR 的 GNOME Mobile（需要启用 Enable Third-Party）。🚫 fc43：混合构建（gsd=51~beta/mutter+shell=49^mobile），可能导致运行时问题。fc44/45：COPR 缺包时可能回退原版 GNOME——**本项目不负责**。仅 rawhide 完全支持。构建前请查看 [COPR Monitor](https://copr.fedorainfracloud.org/coprs/g/mobility/gnome-mobile/monitor/)。 | `true` / `false` | `false` |
-| **Plasma Mobile** | 使用 Plasma Mobile 界面而非 Plasma Desktop（仅 Desktop=KDE Plasma 时有效）。仅 Fedora 43 确认可用，fc44/45/rawhide 上崩溃——**本项目不负责**。 | `true` / `false` | `false` |
+| **Plasma Mobile** | 使用 Plasma Mobile 界面而非 Plasma Desktop（仅 Desktop=KDE Plasma 时有效）。仅 Fedora 43 确认可用，fc44/45/rawhide 上崩溃。已将 SDDM 替换为 plasma-login-manager，可能解决此问题但未测试。 | `true` / `false` | `false` |
 | **Denial: Mobile mode** | Denial：使用 Mobile 模式（类似 Android 平板的 UI）而非 Desktop 模式（无屏幕键盘）（仅 Desktop=Denial 时有效）。 | `true` / `false` | `true` |
 | **Quiet Boot** | 启用 Plymouth 启动画面和安静启动信息 | `true` / `false` | `true` |
 | **Autologin** | 创建的用户是否自动登录 | `true` / `false` | `true` |
@@ -185,7 +185,7 @@ fastboot reboot
 
 ## 已知问题
 
-1. **重启后传感器方向有时会变为 undefined 而非 normal** – 加速度计方向有时会在重启后变为 undefined 而非 normal，目前暂未找到解决办法。如果你确认能够旋转，请尽量不要重启，否则可能会导致传感器方向变为 undefined。
+1. **开机后传感器方向可能变为 undefined，几分钟内会恢复** – 开机后几分钟内加速度计方向可能显示为 undefined，导致无法自动旋转，之后会自动恢复为 normal。
 
 ### GNOME Mobile
 
@@ -199,7 +199,7 @@ fastboot reboot
 
 1. **Plasma Mobile 在 Fedora 44、45 和 rawhide 上崩溃** – 桌面启动时崩溃。仅 **Fedora 43** 确认可用。
 2. **部分移动 UI 仍可访问** – 即使桌面崩溃，部分移动 shell 组件仍可正常工作：首次启动引导、锁屏密码输入、以及电源菜单（关机/重启/注销）。
-3. 如果您知道如何解决此问题，欢迎通过 Issues 或 PR 贡献。
+3. 我已将 SDDM 替换为 `plasma-login-manager`（SDDM 在 Fedora 上已弃用）。这**可能**解决 Plasma Mobile 崩溃的问题，但我**尚未测试**。欢迎反馈。
 
 ---
 
