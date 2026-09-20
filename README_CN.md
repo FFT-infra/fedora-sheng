@@ -186,7 +186,6 @@ fastboot reboot
 ## 已知问题
 
 1. **开机后传感器方向可能变为 undefined，几分钟内会恢复** – 开机后几分钟内加速度计方向可能显示为 undefined，导致无法自动旋转，之后会自动恢复为 normal。
-2. **Fedora 44 下触控笔无法工作** – 由 [teerasak](https://github.com/teerasak) 确认。触控笔（xiaomi-pen-status）在 Fedora 44 上无法正常工作。
 
 ### GNOME Mobile
 

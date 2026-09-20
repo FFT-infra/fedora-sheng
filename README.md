@@ -186,7 +186,6 @@ After rebooting, the device should start from slot B and boot into Fedora.
 ## Known Issues
 
 1. **Sensor orientation may be "undefined" for a few minutes after boot** – The accelerometer orientation may show as "undefined" within the first few minutes after boot, causing auto-rotation to not work. It recovers to "normal" automatically.
-2. **Stylus not working on Fedora 44** – Confirmed by [teerasak](https://github.com/teerasak). The stylus (xiaomi-pen-status) does not function on Fedora 44.
 
 ### GNOME Mobile
 
