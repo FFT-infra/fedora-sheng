@@ -186,6 +186,7 @@ After rebooting, the device should start from slot B and boot into Fedora.
 ## Known Issues
 
 1. **Sensor orientation may be "undefined" for a few minutes after boot** – The accelerometer orientation may show as "undefined" within the first few minutes after boot, causing auto-rotation to not work. It recovers to "normal" automatically.
+2. **Stylus not working on Fedora 44** – Confirmed by [teerasak](https://github.com/teerasak). The stylus (xiaomi-pen-status) does not function on Fedora 44.
 
 ### GNOME Mobile
 
@@ -207,14 +208,14 @@ After rebooting, the device should start from slot B and boot into Fedora.
 
 This project benefits from the following outstanding work and community support:
 
-- **map220v** – for TWRP, the mainline kernel port and many device-specific adaptations that make Linux run on the Xiaomi Pad 6S Pro (sheng)
-- **ianchb** – for maintaining the [debian-sheng](https://github.com/ianchb/debian-sheng) project, userspace drivers and various device-specific packages, from which this project is derived
-- **alghiffaryfa19** – for the Qualcomm sensor configuration files (sheng-sensors-file)
-- **slhssb** – for the keyboard backlight driver (xiaomi-sheng-keyboard-backlight)
-- **GhfunNiHe** – for the automatic partition resize (growfs) implementation, taken from [debian-sheng](https://github.com/ianchb/debian-sheng)
-- **code002-2** – for the WiFi firmware warning reference
-- **DotRedstone** – for the [nixos-sheng](https://github.com/DotRedstone/nixos-sheng) project, whose `fake-tablet-mode` lid blanking, `sheng-power-key-display-toggle` service and `docs/hall-sensor-rotation.md` debugging notes form the basis of the cover/power-key handling in the [`sheng-gnome-fix`](https://github.com/mumuxiao722/sheng-gnome-fix) package
-- **CFM880** – for [nabu-accelerometer](https://github.com/CFM880/nabu-accelerometer), whose `userspace/nabu-tablet-mode.c` (GPL-2.0-only) is the source of the new tablet-mode core in `sheng-gnome-fix`
+- **[map220v](https://github.com/map220v)** – for TWRP, the mainline kernel port and many device-specific adaptations that make Linux run on the Xiaomi Pad 6S Pro (sheng)
+- **[ianchb](https://github.com/ianchb)** – for maintaining the [debian-sheng](https://github.com/ianchb/debian-sheng) project, userspace drivers and various device-specific packages, from which this project is derived
+- **[alghiffaryfa19](https://github.com/alghiffaryfa19)** – for the Qualcomm sensor configuration files (sheng-sensors-file)
+- **[slhssb](https://github.com/slhssb)** – for the keyboard backlight driver (xiaomi-sheng-keyboard-backlight)
+- **[GhfunNiHe](https://github.com/GhfunNiHe)** – for the automatic partition resize (growfs) implementation, taken from [debian-sheng](https://github.com/ianchb/debian-sheng)
+- **[code002-2](https://github.com/code002-2)** – for the WiFi firmware warning reference
+- **[DotRedstone](https://github.com/DotRedstone)** – for the [nixos-sheng](https://github.com/DotRedstone/nixos-sheng) project, whose `fake-tablet-mode` lid blanking, `sheng-power-key-display-toggle` service and `docs/hall-sensor-rotation.md` debugging notes form the basis of the cover/power-key handling in the [`sheng-gnome-fix`](https://github.com/mumuxiao722/sheng-gnome-fix) package
+- **[CFM880](https://github.com/CFM880)** – for [nabu-accelerometer](https://github.com/CFM880/nabu-accelerometer), whose `userspace/nabu-tablet-mode.c` (GPL-2.0-only) is the source of the new tablet-mode core in `sheng-gnome-fix`
 
 ---
 

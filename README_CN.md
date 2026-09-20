@@ -186,6 +186,7 @@ fastboot reboot
 ## 已知问题
 
 1. **开机后传感器方向可能变为 undefined，几分钟内会恢复** – 开机后几分钟内加速度计方向可能显示为 undefined，导致无法自动旋转，之后会自动恢复为 normal。
+2. **Fedora 44 下触控笔无法工作** – 由 [teerasak](https://github.com/teerasak) 确认。触控笔（xiaomi-pen-status）在 Fedora 44 上无法正常工作。
 
 ### GNOME Mobile
 
@@ -207,14 +208,14 @@ fastboot reboot
 
 本项目得益于以下优秀工作：
 
-- **map220v** – TWRP、主线内核移植以及使 Linux 能够在小米平板 6S Pro (sheng) 上运行的众多设备特定适配
-- **ianchb** – 维护 [debian-sheng](https://github.com/ianchb/debian-sheng) 项目、用户态驱动以及各种设备特定软件包，本项目基于此衍生
-- **alghiffaryfa19** – Qualcomm 传感器配置文件（sheng-sensors-file）
-- **slhssb** – 键盘背光驱动（xiaomi-sheng-keyboard-backlight）
-- **GhfunNiHe** – 自动分区扩容（growfs）实现，取自 [debian-sheng](https://github.com/ianchb/debian-sheng)
-- **code002-2** – WiFi 固件警告参考
-- **DotRedstone** – 提供 [nixos-sheng](https://github.com/DotRedstone/nixos-sheng) 项目，其 `fake-tablet-mode` 的合盖/开盖息屏处理、`sheng-power-key-display-toggle` 服务及 `docs/hall-sensor-rotation.md` 调试记录，是 [`sheng-gnome-fix`](https://github.com/mumuxiao722/sheng-gnome-fix) 软件包中合盖/电源键处理的基础
-- **CFM880** – 提供 [nabu-accelerometer](https://github.com/CFM880/nabu-accelerometer)，其 `userspace/nabu-tablet-mode.c`（GPL-2.0-only）是 `sheng-gnome-fix` 新 tablet-mode 核心的移植来源
+- **[map220v](https://github.com/map220v)** – TWRP、主线内核移植以及使 Linux 能够在小米平板 6S Pro (sheng) 上运行的众多设备特定适配
+- **[ianchb](https://github.com/ianchb)** – 维护 [debian-sheng](https://github.com/ianchb/debian-sheng) 项目、用户态驱动以及各种设备特定软件包，本项目基于此衍生
+- **[alghiffaryfa19](https://github.com/alghiffaryfa19)** – Qualcomm 传感器配置文件（sheng-sensors-file）
+- **[slhssb](https://github.com/slhssb)** – 键盘背光驱动（xiaomi-sheng-keyboard-backlight）
+- **[GhfunNiHe](https://github.com/GhfunNiHe)** – 自动分区扩容（growfs）实现，取自 [debian-sheng](https://github.com/ianchb/debian-sheng)
+- **[code002-2](https://github.com/code002-2)** – WiFi 固件警告参考
+- **[DotRedstone](https://github.com/DotRedstone)** – 提供 [nixos-sheng](https://github.com/DotRedstone/nixos-sheng) 项目，其 `fake-tablet-mode` 的合盖/开盖息屏处理、`sheng-power-key-display-toggle` 服务及 `docs/hall-sensor-rotation.md` 调试记录，是 [`sheng-gnome-fix`](https://github.com/mumuxiao722/sheng-gnome-fix) 软件包中合盖/电源键处理的基础
+- **[CFM880](https://github.com/CFM880)** – 提供 [nabu-accelerometer](https://github.com/CFM880/nabu-accelerometer)，其 `userspace/nabu-tablet-mode.c`（GPL-2.0-only）是 `sheng-gnome-fix` 新 tablet-mode 核心的移植来源
 
 ---
 
