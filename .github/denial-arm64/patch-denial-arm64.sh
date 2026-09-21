@@ -135,6 +135,27 @@ else:
     m = s.count("linux/x64")
     s = s.replace("linux-x64", "linux-arm64").replace("linux/x64", "linux/arm64")
 
+    # Upstream refactored these helpers on dev: prebuilt_engine_sha256 falls
+    # back to the file's own hash when the sha file is absent, which already
+    # satisfies the first two leniency goals below. Detect that form and skip
+    # them instead of failing.
+    dev_self_lenient = (
+        "prebuilt_engine_sha256() {\n"
+        "    if [[ -f \"$PREBUILT_ENGINE_SHA256\" ]]; then\n"
+    )
+    dev_require_pinned = (
+        "        expected=\"$(prebuilt_engine_sha256)\"\n"
+        "        label=\"pinned build\"\n"
+        "    fi\n"
+        "    [[ \"$expected\" =~ ^[0-9a-f]{64}$ ]] \\\n"
+        "        || die \"invalid expected SHA-256 for $label\"\n",
+        "        expected=\"$(prebuilt_engine_sha256)\"\n"
+        "        label=\"pinned build\"\n"
+        "    fi\n"
+        "    [[ -z \"$expected\" ]] && return 0\n"
+        "    [[ \"$expected\" =~ ^[0-9a-f]{64}$ ]] \\\n"
+        "        || die \"invalid expected SHA-256 for $label\"\n",
+    )
     checks = [
         (
             "prebuilt_engine_sha256() {\n"
@@ -188,11 +209,26 @@ else:
             "require_flutter_bindings lenient on missing pinned revisions",
         ),
     ]
+    applied = 0
     for old, new, note in checks:
-        if old not in s:
-            sys.exit(f"patch: denial-pc anchor not found: {note}")
-        s = s.replace(old, new, 1)
-    mark(pc, s + marker, f"patched denial-pc (arch paths, {len(checks)} lenient engine checks)")
+        if old in s:
+            s = s.replace(old, new, 1)
+            applied += 1
+            continue
+        if note == "require_pinned_engine lenient on empty baseline" and dev_require_pinned[0] in s:
+            s = s.replace(dev_require_pinned[0], dev_require_pinned[1], 1)
+            print("denial-pc: applied dev variant: require_pinned_engine lenient on empty baseline")
+            applied += 1
+            continue
+        if dev_self_lenient in s and note in (
+            "prebuilt_engine_sha256 lenient on empty baseline",
+            "verify_prebuilt_engine lenient on empty baseline",
+        ):
+            print(f"denial-pc: upstream dev already lenient, skipped: {note}")
+            applied += 1
+            continue
+        sys.exit(f"patch: denial-pc anchor not found: {note}")
+    mark(pc, s + marker, f"patched denial-pc (arch paths, {applied} lenient engine checks)")
 
 # ---------- tools/stage-denial-runtime ----------
 stage = repo / "tools" / "stage-denial-runtime"
