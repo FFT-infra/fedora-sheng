@@ -110,6 +110,22 @@ else:
     )
     s = s.replace(sha_anchor, sha_repl, 1)
 
+    # Newer upstream stages the native release engine behind its own checksum
+    # gate. The seeded arm64 placeholder is an empty file; skip the comparison
+    # until real arm64 metadata is committed. Absent on older checkouts.
+    release_anchor = (
+        '  if [[ -f "$NATIVE_RELEASE_ENGINE_DIR/libflutter_engine.so.sha256" ]]; then\n'
+    )
+    if release_anchor in s:
+        s = s.replace(
+            release_anchor,
+            '  if [[ -s "$NATIVE_RELEASE_ENGINE_DIR/libflutter_engine.so.sha256" ]]; then\n',
+            1,
+        )
+        print("patched denial-flutter-engine (release checksum gate lenient on empty baseline)")
+    else:
+        print("denial-flutter-engine: no release checksum gate present, skipped")
+
     mark(engine, s + marker, "patched denial-flutter-engine (arm64 paths, lenient metadata, DEPS hook)")
 
 # ---------- seed linux-arm64 metadata placeholders ----------
