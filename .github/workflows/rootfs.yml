@@ -525,6 +525,13 @@ jobs:
         run: ./tools/denial-flutter-engine build
         working-directory: denial
 
+      - name: "Inspect ARM64 engine metadata"
+        run: |
+          ls -la denial/prebuilt/flutter-engine/linux-arm64-release/ | head -12
+          sha256sum denial/prebuilt/flutter-engine/linux-arm64-release/libflutter_engine.so
+          cat denial/prebuilt/flutter-engine/linux-arm64-release/libflutter_engine.so.sha256
+          file denial/prebuilt/flutter-engine/linux-arm64-release/libflutter_engine.so
+
       - name: "Build Denial"
         run: ./tools/denial-pc build
         working-directory: denial

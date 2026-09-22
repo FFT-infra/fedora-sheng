@@ -151,14 +151,38 @@ else:
     m = s.count("linux/x64")
     s = s.replace("linux-x64", "linux-arm64").replace("linux/x64", "linux/arm64")
 
-    # Upstream refactored these helpers on dev: prebuilt_engine_sha256 falls
-    # back to the file's own hash when the sha file is absent, which already
-    # satisfies the first two leniency goals below. Detect that form and skip
-    # them instead of failing.
-    dev_self_lenient = (
-        "prebuilt_engine_sha256() {\n"
-        "    if [[ -f \"$PREBUILT_ENGINE_SHA256\" ]]; then\n"
-    )
+    # Upstream refactored these helpers on dev (Sep 2026). The dev shapes get
+    # the same empty-baseline leniency the pinned releases carry.
+    dev_variants = {
+        "prebuilt_engine_sha256 lenient on empty baseline": (
+            "prebuilt_engine_sha256() {\n"
+            "    if [[ -f \"$PREBUILT_ENGINE_SHA256\" ]]; then\n"
+            "        cut -d' ' -f1 < \"$PREBUILT_ENGINE_SHA256\"\n"
+            "    else\n"
+            "        require_file \"$PREBUILT_ENGINE\"\n"
+            "        file_sha256 \"$PREBUILT_ENGINE\"\n"
+            "    fi\n"
+            "}\n",
+            "prebuilt_engine_sha256() {\n"
+            "    [[ -s \"$PREBUILT_ENGINE_SHA256\" ]] || return 0\n"
+            "    cut -d' ' -f1 < \"$PREBUILT_ENGINE_SHA256\"\n"
+            "}\n",
+        ),
+        "verify_prebuilt_engine lenient on empty baseline": (
+            "verify_prebuilt_engine() {\n"
+            "    [[ -f \"$PREBUILT_ENGINE\" ]] \\\n"
+            "        || die \"missing locally built Flutter engine: $PREBUILT_ENGINE\"\n"
+            "    [[ \"$(file_sha256 \"$PREBUILT_ENGINE\")\" == \"$(prebuilt_engine_sha256)\" ]] \\\n"
+            "        || die \"locally built Flutter engine does not match $PREBUILT_ENGINE_SHA256; rebuild or investigate it\"\n",
+            "verify_prebuilt_engine() {\n"
+            "    [[ -f \"$PREBUILT_ENGINE\" ]] \\\n"
+            "        || die \"missing locally built Flutter engine: $PREBUILT_ENGINE\"\n"
+            "    local expected_prebuilt\n"
+            "    expected_prebuilt=\"$(prebuilt_engine_sha256)\"\n"
+            "    [[ -z \"$expected_prebuilt\" || \"$(file_sha256 \"$PREBUILT_ENGINE\")\" == \"$expected_prebuilt\" ]] \\\n"
+            "        || die \"locally built Flutter engine does not match $PREBUILT_ENGINE_SHA256; rebuild or investigate it\"\n",
+        ),
+    }
     dev_require_pinned = (
         "        expected=\"$(prebuilt_engine_sha256)\"\n"
         "        label=\"pinned build\"\n"
@@ -236,11 +260,9 @@ else:
             print("denial-pc: applied dev variant: require_pinned_engine lenient on empty baseline")
             applied += 1
             continue
-        if dev_self_lenient in s and note in (
-            "prebuilt_engine_sha256 lenient on empty baseline",
-            "verify_prebuilt_engine lenient on empty baseline",
-        ):
-            print(f"denial-pc: upstream dev already lenient, skipped: {note}")
+        if note in dev_variants and dev_variants[note][0] in s:
+            s = s.replace(dev_variants[note][0], dev_variants[note][1], 1)
+            print(f"denial-pc: applied dev variant: {note}")
             applied += 1
             continue
         sys.exit(f"patch: denial-pc anchor not found: {note}")
